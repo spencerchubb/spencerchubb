@@ -1,2 +1,3 @@
 # spencerchubb.github.io
-Personal Portfolio
+
+Personal website for Spencer Chubb
