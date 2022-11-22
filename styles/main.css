@@ -4,6 +4,15 @@ body {
     /* align-items: center; */
     max-width: min(90%, 500px);
     margin: 0 auto;
+    padding-top: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, ul, table {
+    margin: 0 0 1rem 0;
+}
+
+ul ul {
+    margin: 0;
 }
 
 nav {
@@ -12,18 +21,22 @@ nav {
     justify-content: space-evenly;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Georgia', serif;
 }
 
-p, a, li {
+p, a, li, th, td {
     font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
     line-height: 1.5;
+}
+
+table {
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 0 4px;
 }

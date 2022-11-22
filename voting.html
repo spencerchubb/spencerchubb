@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="icon" href="images/favicon.png" />
+    <title>Voting | Spencer Chubb</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/spencerchubb/spencerchubb.github.io">Repo</a>
+        <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <h1>Voting</h1>
+    <p>
+        Voting is one way for groups of people to make choices.
+        There are other ways for groups of people to make choices, such as by having a dictator who makes choices.
+        In this post, I discuss voting systems.
+        Some questions I am interested in:
+    </p>
+    <ul>
+        <li>How can groups of people make optimal decisions?</li>
+        <li>How can we make voting systems efficient?</li>
+    </ul>
+    <h2>Resources</h2>
+    <ul>
+        <li><a href="https://arxiv.org/abs/2110.07066">An algorithm for a fairer and better voting system</a></li>
+        <ul>
+            <li>Proposes a voting system that finds best candidate to represent voters</li>
+            <li>Believes their algorithm is better than better than Instant-Runoff Voting, Preferential Block Voting, Single Transferable Vote, and First Past The Post</li>
+        </ul>
+        <li><a href="https://arxiv.org/ftp/arxiv/papers/1606/1606.04371.pdf">Minimax is the Best Electoral System After All</a></li>
+        <ul>
+            <li>Argues that 'minimum change' is the most important criterion of an election system</li>
+            <li>Definition: A system satisfies 'minimum change' if the Condorcet winner wins with the least change to voting results</li>
+        </ul>
+    </ul>
+    <h2>Arrow's Impossibility Theorem</h2>
+    <p>
+        Arrow's impossibility theorem states that when voters have three or more options, there is no ranked voting system that satisfies the following properties:
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Complete and transitive</td>
+                <td>All options are ranked in order. To satisfy this property, there must be no circular ties, such as in rock-paper-scissors (rock beats scissors, scissors beats paper, paper beats rock)</td>
+            </tr>
+            <tr>
+                <td>Unrestricted domain</td>
+                <td>All voters have a say</td>
+            </tr>
+            <tr>
+                <td>Non-dictatorship</td>
+                <td>The decision is not left up to a single person, or in other words, there is no dictator</td>
+            </tr>
+            <tr>
+                <td>Pareto efficiency</td>
+                <td>Nobody can be made better off without making someone else worse off</td>
+            </tr>
+            <tr>
+                <td>Independence of irrelevant alternatives</td>
+                <td>This one is hard to explain, so see <a href="https://en.wikipedia.org/wiki/Independence_of_irrelevant_alternatives#In_social_choice">here</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
