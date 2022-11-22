@@ -1,7 +1,6 @@
 body {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     max-width: min(90%, 500px);
     margin: 0 auto;
     padding-top: 1rem;
