@@ -57,7 +57,7 @@
         line-height: 1.5;
     }
 
-    button {
+    .button {
         border-radius: 8px;
         border: none;
         outline: none;
@@ -86,11 +86,13 @@
     .row {
         display: flex;
         flex-direction: row;
+        align-items: center;
     }
 
     .col {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     .song {
@@ -143,7 +145,7 @@
         </div>
         <div class="row" style="justify-content: center; padding: 16px 0; width: 100%; border-top: solid 1px grey;">
             <a href="taylor_album_results.html" style="margin: 0;">
-                <button>See Results</button>
+                <button class="button">See Results</button>
             </a>
         </div>
     </div>
@@ -403,12 +405,12 @@
                     <div class="song col">
                         <p style="margin: 0;">${song}</p>
                         <div class="row">
+                            <p class="rate-button ${ratings[song] === undefined && "active"}">None</p>
                             <p class="rate-button ${ratings[song] === 1 && "active"}">1</p>
                             <p class="rate-button ${ratings[song] === 2 && "active"}">2</p>
                             <p class="rate-button ${ratings[song] === 3 && "active"}">3</p>
                             <p class="rate-button ${ratings[song] === 4 && "active"}">4</p>
                             <p class="rate-button ${ratings[song] === 5 && "active"}">5</p>
-                            <p class="rate-button">&#10060;</p>
                         </div>
                     </div>
                     `;
@@ -422,10 +424,10 @@
                 const song = event.target.parentElement.parentElement.querySelector("p").innerText;
                 const rating = event.target.innerText;
 
-                if (rating === "X") {
-                    delete ratings[song];
-                } else {
+                if (rating === "1" || rating === "2" || rating === "3" || rating === "4" || rating === "5") {
                     ratings[song] = parseInt(rating);
+                } else {
+                    delete ratings[song];
                 }
                 localStorage.setItem("ratings", JSON.stringify(ratings));
 
