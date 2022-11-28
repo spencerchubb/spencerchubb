@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/favicon.png" />
+    <title>Find Favorite Taylor Album</title>
+</head>
+
+<style>
+    html,
+    body {
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        max-width: min(90%, 500px);
+        margin: 0 auto;
+        padding-top: 1rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    ul,
+    table {
+        margin: 0 0 1rem 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Georgia', serif;
+    }
+
+    p,
+    a,
+    li,
+    th,
+    td {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
+    button {
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        padding: 4px 8px;
+        background-color: #66b3ff;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        box-shadow: 0 0 4px lightgrey;
+    }
+
+    nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 0 4px grey;
+        position: fixed;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: #3f9fff;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .song {
+        align-items: center;
+        border-radius: 4px;
+        border: 1px solid lightgrey;
+        box-shadow: 0 0 4px lightgrey;
+        padding: 4px 8px;
+        margin: 8px 0;
+    }
+
+    .rate-button {
+        border-radius: 4px;
+        border: 1px solid lightgrey;
+        padding: 4px 8px;
+        margin: 8px 8px;
+    }
+
+    .rate-button:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+        box-shadow: 0 0 4px lightgrey;
+    }
+
+    .active {
+        background-color: #99cfff;
+        box-shadow: 0 0 4px lightgrey;
+    }
+
+    .active:hover {
+        background-color: #99cfff;
+    }
+</style>
+
+<body>
+    <div class="col" style="height: 100%;">
+        <div class="col" style="overflow-y: auto;">
+            <div class="body">
+                <h1>rate all of taylor's songs to find your favorite album</h1>
+                <p>
+                    I'm a huge Taylor Swift fan, and I've been listening to her music for a long time.
+                    I've always wondered what my favorite album is, but I've never been able to decide.
+                    So I decided to rate all of her songs to find my favorite album.
+                </p>
+                <p>
+                    Now you can do the same!
+                </p>
+                <div id="songs"></div>
+            </div>
+        </div>
+        <div class="row" style="justify-content: center; padding: 16px 0; width: 100%; border-top: solid 1px grey;">
+            <a href="taylor_album_results.html" style="margin: 0;">
+                <button>See Results</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                "album": "Taylor Swift",
+                "songs": [
+                    "Tim McGraw",
+                    "Picture to Burn",
+                    "Teardrops on My Guitar",
+                    "A Place in This World",
+                    "Cold as You",
+                    "The Outside",
+                    "Tied Together with a Smile",
+                    "Stay Beautiful",
+                    "Should've Said No",
+                    "Mary's Song (Oh My My My)",
+                    "Our Song",
+                    "I'm Only Me When I'm with You",
+                    "Invisible",
+                    "A Perfectly Good Heart",
+                ],
+            },
+            {
+                "album": "Fearless (Taylor's Version)",
+                "songs": [
+                    "Fearless",
+                    "Fifteen",
+                    "Love Story",
+                    "Hey Stephen",
+                    "White Horse",
+                    "You Belong with Me",
+                    "Breathe",
+                    "Tell Me Why",
+                    "You're Not Sorry",
+                    "The Way I Loved You",
+                    "Forever & Always",
+                    "The Best Day",
+                    "Change",
+                    "Jump Then Fall",
+                    "Untouchable",
+                    "Come In with the Rain",
+                    "Superstar",
+                    "The Other Side of the Door",
+                    "Today Was a Fairytale",
+                    "You All Over Me",
+                    "Mr. Perfectly Fine",
+                    "We Were Happy",
+                    "That's When",
+                    "Don't You",
+                    "Bye Bye Baby",
+                ],
+            },
+            {
+                "album": "Speak Now",
+                "songs": [
+                    "Mine",
+                    "Sparks Fly",
+                    "Back to December",
+                    "Speak Now",
+                    "Dear John",
+                    "Mean",
+                    "The Story of Us",
+                    "Never Grow Up",
+                    "Enchanted",
+                    "Better Than Revenge",
+                    "Innocent",
+                    "Haunted",
+                    "Last Kiss",
+                    "Long Live",
+                    "Ours",
+                    "If This Was a Movie",
+                    "Superman",
+                ],
+            },
+            {
+                "album": "Red (Taylor's Version)",
+                "songs": [
+                    "State Of Grace",
+                    "Red",
+                    "Treacherous",
+                    "I Knew You Were Trouble",
+                    "All Too Well",
+                    "22",
+                    "I Almost Do",
+                    "We Are Never Ever Getting Back Together",
+                    "Stay Stay Stay",
+                    "The Last Time",
+                    "Holy Ground",
+                    "Sad Beautiful Tragic",
+                    "The Lucky One",
+                    "Everything Has Changed",
+                    "Starlight",
+                    "Begin Again",
+                    "The Moment I Knew",
+                    "Come Back... Be here",
+                    "Girl at Home",
+                    "Ronan",
+                    "Better Man",
+                    "Nothing New",
+                    "Babe",
+                    "Message In a Bottle",
+                    "I Bet You Think About Me",
+                    "Forever Winter",
+                    "Run",
+                    "The Very First Night",
+                    "All Too Well (10 Minute Version)",
+                ],
+            },
+            {
+                "album": "1989",
+                "songs": [
+                    "Welcome To New York",
+                    "Blank Space",
+                    "Style",
+                    "Out of the Woods",
+                    "All You Had To Do Was Stay",
+                    "Shake It Off",
+                    "I Wish You Would",
+                    "Bad Blood",
+                    "Wildest Dreams",
+                    "How You Get The Girl",
+                    "This Love",
+                    "I Know Places",
+                    "Clean",
+                    "Wonderland",
+                    "You Are In Love",
+                    "New Romantics",
+                ],
+            },
+            {
+                "album": "reputation",
+                "songs": [
+                    "...Ready For It",
+                    "End Game",
+                    "I Did Something Bad",
+                    "Don't Blame Me",
+                    "Delicate",
+                    "Look What You Made Me Do",
+                    "So It Goes...",
+                    "Gorgeous",
+                    "Getaway Car",
+                    "King Of My Heart",
+                    "Dancing With Our Hands Tied",
+                    "Dress",
+                    "This Is Why We Can't Have Nice Things",
+                    "Call It What You Want",
+                    "New Year's Day",
+                ],
+            },
+            {
+                "album": "Lover",
+                "songs": [
+                    "I Forgot That You Existed",
+                    "Cruel Summer",
+                    "Lover",
+                    "The Man",
+                    "The Archer",
+                    "I Think He Knows",
+                    "Miss Americana & The Heartbreak Prince",
+                    "Paper Rings",
+                    "Cornelia Street",
+                    "Death By A Thousand Cuts",
+                    "London Boy",
+                    "Soon You'll Get Better",
+                    "False God",
+                    "You Need To Calm Down",
+                    "Afterglow",
+                    "ME!",
+                    "It's Nice To Have A Friend",
+                    "Daylight",
+                ],
+            },
+            {
+                "album": "folklore",
+                "songs": [
+                    "the 1",
+                    "cardigan",
+                    "the last great american dynasty",
+                    "exile",
+                    "my tears ricochet",
+                    "mirrorball",
+                    "seven",
+                    "august",
+                    "this is me trying",
+                    "illicit affairs",
+                    "invisible string",
+                    "mad woman",
+                    "epiphany",
+                    "betty",
+                    "peace",
+                    "hoax",
+                    "the lakes",
+                ],
+            },
+            {
+                "album": "evermore",
+                "songs": [
+                    "willow",
+                    "champagne problems",
+                    "gold rush",
+                    "'tis the damn season",
+                    "tolerate it",
+                    "no body, no crime",
+                    "happiness",
+                    "dorothea",
+                    "coney island",
+                    "ivy",
+                    "cowboy like me",
+                    "long story short",
+                    "marjorie",
+                    "closure",
+                    "evermore",
+                    "right where you left me",
+                    "it's time to go",
+                ],
+            },
+            {
+                "album": "Midnights",
+                "songs": [
+                    "Lavender Haze",
+                    "Maroon",
+                    "Anti-Hero",
+                    "Snow On The Beach",
+                    "You're On Your Own, Kid",
+                    "Midnight Rain",
+                    "Question...?",
+                    "Vigilante Shit",
+                    "Bejeweled",
+                    "Labyrinth",
+                    "Karma",
+                    "Sweet Nothing",
+                    "Mastermind",
+                    "The Great War",
+                    "Bigger Than The Whole Sky",
+                    "Paris",
+                    "High Infidelity",
+                    "Glitch",
+                    "Would've Could've Should've",
+                    "Dear Reader",
+                ],
+            },
+        ];
+
+        const ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+
+        function renderSongs() {
+            let html = "";
+            for (const album of data) {
+                html += `
+                <h2>${album.album}</h2>
+                `;
+                for (const song of album.songs) {
+                    html += `
+                    <div class="song col">
+                        <p style="margin: 0;">${song}</p>
+                        <div class="row">
+                            <p class="rate-button ${ratings[song] === 1 && "active"}">1</p>
+                            <p class="rate-button ${ratings[song] === 2 && "active"}">2</p>
+                            <p class="rate-button ${ratings[song] === 3 && "active"}">3</p>
+                            <p class="rate-button ${ratings[song] === 4 && "active"}">4</p>
+                            <p class="rate-button ${ratings[song] === 5 && "active"}">5</p>
+                            <p class="rate-button">&#10060;</p>
+                        </div>
+                    </div>
+                    `;
+                }
+            }
+            document.getElementById("songs").innerHTML = html;
+        }
+
+        document.getElementById("songs").addEventListener("click", function (event) {
+            if (event.target.classList.contains("rate-button")) {
+                const song = event.target.parentElement.parentElement.querySelector("p").innerText;
+                const rating = event.target.innerText;
+
+                if (rating === "X") {
+                    delete ratings[song];
+                } else {
+                    ratings[song] = parseInt(rating);
+                }
+                localStorage.setItem("ratings", JSON.stringify(ratings));
+
+                renderSongs();
+            }
+        });
+
+        renderSongs();
+    </script>
+</body>
+
+</html>

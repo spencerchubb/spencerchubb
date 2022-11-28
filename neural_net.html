@@ -9,6 +9,31 @@
     <title>Neural Net | Spencer Chubb</title>
 </head>
 
+<style>
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .layer {
+        height: 100%;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .circle {
+        border-radius: 50%;
+        border: 2px solid black;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
 <body>
     <h1>Neural Net</h1>
     <p>My goal is to make this the clearest explanation on the entire internet of how neural networks work.</p>
@@ -17,7 +42,7 @@
         Maybe you're interested in neural networks, but don't understand them.
         Maybe you've tried using something like pytorch, but want to understand the underlying math.
         If you fit that description, this is for you!
-        I am going to explain the concepts and math for neural networks, and I will show code.
+        I am going to explain neural networks with math, animations, and code.
     </p>
     <h2>Prerequisites</h2>
     <ul>
@@ -32,8 +57,74 @@
         From now on, I will mostly discuss MLPs.
     </p>
     <h2>What is the function?</h2>
-    <p>A neural network can be represented as a network of neurons.</p>
-    <p></p>
+    <p>
+        A neural network can be represented as a network of neurons.
+        Here is a visual of a neural network with 3 layers.
+    </p>
+    <div class="row" style="height: 250px; gap: 50px; align-self: center;">
+        <div class="col layer">
+            <div id="c1" class="circle"></div>
+            <div id="c2" class="circle"></div>
+        </div>
+        <div class="col layer">
+            <div id="c3" class="circle"></div>
+            <div id="c4" class="circle"></div>
+            <div id="c5" class="circle"></div>
+        </div>
+        <div class="col layer">
+            <div id="c6" class="circle"></div>
+            <div id="c7" class="circle"></div>
+        </div>
+    </div>
+    <canvas id="canvas" style="position: absolute; width: 100vw; height: 100vw; top: 0; left: 0;"></canvas>
+    <svg style="position: absolute; top: 0; left: 0;">
+        <line x1="0" y1="0" x2="150" y2="50" stroke="black" />
+    </svg>
+    <script>
+        // draw arrows between layers
+        const get = sel => document.getElementById(sel);
+        const create = tag => document.createElement(tag);
+        const left = ele => ele.offsetLeft;
+        const right = ele => ele.offsetLeft + ele.offsetWidth;
+        const y = ele => ele.offsetTop;
+        const c1 = get("c1");
+        const c2 = get("c2");
+        const c3 = get("c3");
+        const c4 = get("c4");
+        const c5 = get("c5");
+        const c6 = get("c6");
+        const c7 = get("c7");
+
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const drawLine = (x1, y1, x2, y2) => {
+            // const line = create("div");
+            // line.style.position = "absolute";
+            // line.style.backgroundColor = "black";
+            // line.style.width = `${Math.abs(x2 - x1)}px`;
+            // line.style.height = "2px";
+            // line.style.transform = `rotate(${Math.atan2(y2 - y1, x2 - x1)}rad)`;
+            // line.style.left = `${x1}px`;
+            // line.style.top = `${y1}px`;
+            // document.body.appendChild(line);
+
+            // console.log('drawing line', x1, y2, x2, y2);
+            // ctx.beginPath();
+            // ctx.moveTo(x1, y1);
+            // ctx.lineTo(x2, y2);
+            // ctx.stroke();
+            document.body.innerHTML = `
+            <svg style="position: absolute; top: 0; left: 0;">
+                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="black" />
+            </svg>
+            `;
+        };
+
+        // drawLine(right(c1), y(c1), left(c3), y(c3));
+        // drawLine(right(c1), y(c1), left(c4), y(c4));
+        // drawLine(right(c1), y(c1), left(c5), y(c5));
+
+    </script>
 </body>
 
 </html>
