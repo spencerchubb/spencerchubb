@@ -35,14 +35,17 @@
 </style>
 
 <body>
-    <h1>Neural Net</h1>
-    <p>My goal is to make this the clearest explanation on the entire internet of how neural networks work.</p>
-    <h2>Who is this for?</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/spencerchubb/spencerchubb.github.io">Repo</a>
+        <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <h1>How Neural Networks Work</h1>
     <p>
         Maybe you're interested in neural networks, but don't understand them.
         Maybe you've tried using something like pytorch, but want to understand the underlying math.
         If you fit that description, this is for you!
-        I am going to explain neural networks with math, animations, and code.
+        I am going to explain neural networks with math, diagrams, and code.
     </p>
     <h2>Prerequisites</h2>
     <ul>
@@ -53,78 +56,120 @@
     <p>
         It's a function, and it maps inputs to outputs.
         That's it.
-        One type of neural net is a Multi-Layer Perceptron (MLP).
-        From now on, I will mostly discuss MLPs.
     </p>
-    <h2>What is the function?</h2>
+    <p>
+        For learning purposes, let's look at an extremely simple function. 
+        f(x) = a*x, where <i>a</i> is some parameter that we don't know yet.
+        Say we have some data, and we want to find the value of <i>a</i> that best fits the data.
+        Let's say we have the following data.
+    </p>
+    <ul>
+        <li>f(0) = 0</li>
+        <li>f(1) = 1.1</li>
+        <li>f(2) = 1.9</li>
+        <li>f(3) = 3.1</li>
+    </ul>
+    <p>
+        We can plot this data to get a better idea of what it looks like.
+    </p>
+    <img src="images/linear_plot.png" />
+    <p>
+        We can see that this is roughly linear, and a good approximate of <i>a</i> is 1.
+        Therefore the function would be roughly f(x) = 1*x.
+        Great! Now we have "learned" the function.
+        When a neural network "learns", it is a lot like finding parameters that fit a function to data.
+        Soon, we will see more on how to figure out the parameters.
+    </p>
+    <h2>What is the function of a neural net?</h2>
     <p>
         A neural network can be represented as a network of neurons.
-        Here is a visual of a neural network with 3 layers.
+        Here is a neural network with 3 layers.
     </p>
-    <div class="row" style="height: 250px; gap: 50px; align-self: center;">
-        <div class="col layer">
-            <div id="c1" class="circle"></div>
-            <div id="c2" class="circle"></div>
-        </div>
-        <div class="col layer">
-            <div id="c3" class="circle"></div>
-            <div id="c4" class="circle"></div>
-            <div id="c5" class="circle"></div>
-        </div>
-        <div class="col layer">
-            <div id="c6" class="circle"></div>
-            <div id="c7" class="circle"></div>
-        </div>
-    </div>
-    <canvas id="canvas" style="position: absolute; width: 100vw; height: 100vw; top: 0; left: 0;"></canvas>
-    <svg style="position: absolute; top: 0; left: 0;">
-        <line x1="0" y1="0" x2="150" y2="50" stroke="black" />
-    </svg>
-    <script>
-        // draw arrows between layers
-        const get = sel => document.getElementById(sel);
-        const create = tag => document.createElement(tag);
-        const left = ele => ele.offsetLeft;
-        const right = ele => ele.offsetLeft + ele.offsetWidth;
-        const y = ele => ele.offsetTop;
-        const c1 = get("c1");
-        const c2 = get("c2");
-        const c3 = get("c3");
-        const c4 = get("c4");
-        const c5 = get("c5");
-        const c6 = get("c6");
-        const c7 = get("c7");
-
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-        const drawLine = (x1, y1, x2, y2) => {
-            // const line = create("div");
-            // line.style.position = "absolute";
-            // line.style.backgroundColor = "black";
-            // line.style.width = `${Math.abs(x2 - x1)}px`;
-            // line.style.height = "2px";
-            // line.style.transform = `rotate(${Math.atan2(y2 - y1, x2 - x1)}rad)`;
-            // line.style.left = `${x1}px`;
-            // line.style.top = `${y1}px`;
-            // document.body.appendChild(line);
-
-            // console.log('drawing line', x1, y2, x2, y2);
-            // ctx.beginPath();
-            // ctx.moveTo(x1, y1);
-            // ctx.lineTo(x2, y2);
-            // ctx.stroke();
-            document.body.innerHTML = `
-            <svg style="position: absolute; top: 0; left: 0;">
-                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="black" />
-            </svg>
-            `;
-        };
-
-        // drawLine(right(c1), y(c1), left(c3), y(c3));
-        // drawLine(right(c1), y(c1), left(c4), y(c4));
-        // drawLine(right(c1), y(c1), left(c5), y(c5));
-
-    </script>
+    <img src="images/neural_net.png" alt="neural net" />
+    <p>
+        Each circle is a neuron.
+        Each line is a connection between two neurons.
+    </p>
+    <p>
+        The first layer is called the input layer.
+        In this example, the input layer has 2 neurons, so our function can take in 2 inputs.
+        The third layer is the output layer, so our function has 2 outputs.
+        Any layers in between are called hidden layers by convention.
+    </p>
+    <p>
+        Here you can see w1 and w2 are bolded.
+        These are the weights for the neurons they are attached to.
+        Each neuron also has a bias (b), except for the input neurons.
+        To calculate z, we take the weighted sum of the inputs, and add the bias.
+        z = w1*x1 + w2*x2 + b.
+        Then we apply an activation function to z.
+        In this example, we use ReLU for the activation function.
+        a = ReLU(z).
+    </p>
+    <img src="images/neural_net1.png" alt="neural net" />
+    <p>
+        The purpose of the activation function is to introduce non-linearity into the function.
+        Without some non-linearity, the overall function of the neural network would be linear, and we would only be able to learn linear data.
+        One common activation function is called ReLU, and it is defined as follows.
+    </p>
+    <p>
+        ReLU(z) = max(0, z).
+    </p>
+    <p>
+        This means that if z < 0, the output is 0.
+        If z >= 0, the output is z.
+        This is a very simple activation function, but it is indeed non-linear.
+        Another advantage of ReLU is that it is fast to compute, so we can make large neural networks with many layers and neurons.
+    </p>
+    <p>
+        We continue calculating z and applying the activation function for each neuron in layer 2.
+        Then we use the output of layer 2 as the input of layer 3.
+        Finally, we get the output of layer 3, which is the output of the whole neural network.
+    </p>
+    <h2>What are the parameters of this function?</h2>
+    <p>
+        The parameters of the function are the weights and biases.
+        We want to find the values of the weights and biases that best fit the data.
+    </p>
+    <p>
+        Think back to the linear function example where we we had one parameter <i>a</i>.
+        With a neural network, we have a lot more parameters to learn.
+        A naive approach would be to try every random combination of weights and biases, and see which one fits the data best.
+        This is called brute force, and it is very slow.
+        We can use a systematic approach to find good paramters in a reasonable amount of time.
+    </p>
+    <h2>How do we find the parameters?</h2>
+    <p>
+        If you remember some calculus, you might remember that the derivative tells us the slope at a point.
+        In other words, the derivative tells us how much the function changes when we change the input.
+        A gradient is essentially a derivative for a function with multiple variables.
+        Neural networks have many parameters, so we need to use gradients.
+    </p>
+    <p>
+        Definition: The gradient vector is the vector pointing in the direction of the greatest rate of increase.
+    </p>
+    <p>
+        You might also remember optimization problems from calculus.
+        An optimization problem is a problem where we want to find the minimum or maximum of a function.
+        In this case, we want to find the parameters that minimize the error of the neural network.
+        So, what is the error function that we are trying to optimize?
+    </p>
+    <p>
+        The error of the neural network is the difference between the output of the neural network and the actual output.
+        We can use the squared error function, which is defined as follows.
+    </p>
+    <p>
+        E = (actual - expected)^2.
+    </p>
+    <p>
+        To solve this optimization problem, we can use an algorithm called gradient descent.
+        First, we start with some random parameters.
+        Then, we calculate the gradient of the error function with respect to the parameters.
+        Remember, the gradient points toward the fastest rate of increase.
+        We then take a step opposite the direction of the gradient, becaues we want to minimize.
+        This is called gradient descent because we descend in the direction of the gradient.
+        With each step, we get closer to the optimal parameters of the neural network.
+    </p>
 </body>
 
 </html>
