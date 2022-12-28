@@ -6,11 +6,11 @@ body {
     padding-top: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, ul, table {
+h1, h2, h3, h4, h5, h6, p, a, ul, ol, table {
     margin: 0 0 1rem 0;
 }
 
-ul ul {
+ul ul, ol ol, ul ol, ol ul {
     margin: 0;
 }
 

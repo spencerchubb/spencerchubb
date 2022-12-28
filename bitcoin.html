@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="icon" href="images/favicon.png" />
+    <title>Bitcoin | Spencer Chubb</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/spencerchubb/spencerchubb.github.io">Repo</a>
+        <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <h1>How Bitcoin Works</h1>
+    <p>
+        You probably already know what Bitcoin is.
+        In this post, you will also learn how it works.
+    </p>
+    <h2>Why Trust Matters</h2>
+    <p>
+        Trust is important when it comes to money, but not as important in other domains.
+        Consider another application such as messaging.
+        If I am sending a message to my friend, it would kinda suck if a bad actor interfered with my message.
+        It usually wouldn't be the end of the world, but it would be annoying.
+    </p>
+    <p>
+        Also, what incentive would someone have to interfere with messages between me and my friend?
+        In most cases, there would be little incentive.
+        It would be bizarre for someone to go out of their way to hack my messages.
+    </p>
+    <p>
+        Money is a highly adversarial domain.
+        There is a large incentive to hack money.
+        If you successfully hack someone's money, you earn money, so we need to trust that our money is safe.
+    </p>
+    <h2>How Trust is Instilled</h2>
+    <p>
+        In the case of U.S. Dollars, we trust that dollars are safe because the U.S. government uses violence to enforce the rules.
+        If you steal money, you go to jail.
+    </p>
+    <p>
+        In the case of Bitcoin, we trust Bitcoin for two reasons: 
+    </p>
+    <ul>
+        <li>Cryptography</li>
+        <li>Transparency</li>
+    </ul>
+    <p>I will expand on what these mean below.</p>
+    <h2>Cryptography 101</h2>
+    <p>
+        I will explain the minimum of what you need to understand this post.
+        I will also leave some parts out, because cryptography is a very rich field of mathematics.
+    </p>
+    <h3>Public and Private Keys</h3>
+    <p>
+        In cryptography, there are these things called public keys and private keys.
+        You choose a random private key, and then keep it a secret.
+        A private key is kind of like a password.
+    </p>
+    <p>
+        With your private key, you can use a cryptographic function to generate a public key.
+        The key generation function is one-way, which means that it is easy to go from private key to public key, but it is hard to go from public key to private key.
+    </p>
+    <p>
+        Theoretically, it would be possible to derive the private key from the public key, but it would take so long that it is not practical.
+        Therefore, we say that it is practically impossible.
+    </p>
+    <p>
+        Another special property of public and private keys is the notion of <i>signatures</i>.
+        You can sign some data with your private key, and then anyone can use your public key to verify that the data was signed by you.
+        And that can be done while keeping your private key secret.
+        That is why one of the keys is public and the other is private.
+    </p>
+    <h3>Hashing</h3>
+    <p>
+        Hashing is a cryptographic function that takes some data and produces something called a hash.
+        The hash function is one-way, which means that it is easy to go from data to hash, but it is hard to go from hash to data.
+        Similar to the key generation function, reversing the hash function is theoretically possible, but practically impossible.
+    </p>
+    <h3>Nonces</h3>
+    <p>
+        A nonce is a random number.
+        It is used in cryptography to make it hard to guess the input to a cryptographic function.
+        For example, if you want to sign some data, you can use a nonce to make it hard to guess the private key.
+    </p>
+    <h2>What does Bitcoin guarantee?</h2>
+    <ol>
+        <li>
+            I am the only person who can spend my Bitcoin.
+            In other words, nobody can steal my Bitcoin
+        </li>
+        <li>
+            The same Bitcoin can only be spent once.
+            The notion of spending the same money twice is called the double-spend problem
+        </li>
+    </ol>
+    <h2>How are transactions secured?</h2>
+    <p>
+        The first guarantee is that I am the only person who can spend my Bitcoin."
+        How is this enforced?
+    </p>
+    <p>
+        We use public and private keys to ensure that I am the only person who can spend my Bitcoin.
+        When I want to spend my Bitcoin, I sign a transaction with my private key.
+        Then, anyone can use my public key to verify that the transaction was signed by me.
+        If someone tries to fraudulently claim that I sent some Bitcoin, others can verify with my public key and see that it's a lie.
+    </p>
+    <h2>What about the double-spend problem?</h2>
+    <p>
+        The second guarantee is that any particular Bitcoin can only be spent once.
+        How is this enforced?
+    </p>
+    <p>
+        Let's say I receive some Bitcoin.
+        When I send that Bitcoin to someone else, that transaction is recorded on the Bitcoin blockchain.
+        The blockchain is a public ledger of all transactions.
+        Then if I ever try to send that same Bitcoin, others will see that I already spent it.
+    </p>
+    <h2>What is the blockchain?</h2>
+    <p>
+        A blockchain is a chain of blocks.
+        Each block contains a list of transactions.
+        The blocks are chained together in a way that makes it practically impossible to modify previous transactions.
+        In fancy terms, we can describe the blockchain as immutable.
+    </p>
+    <p>
+        It is very important for the blockchain to be immutable.
+        If it was possible to go back and modify previous transactions, then I would be able to spend the same Bitcoin twice.
+    </p>
+    <h2>How are new blocks added to the chain?</h2>
+    <p>
+        Now you know that the blockchain is a chain of blocks, and the old blocks cannot be changed.
+        You might be wondering how new blocks are added to the chain.
+    </p>
+    <p>
+        There are these things called miners.
+        They are people or businesses who run their computers to compete to add new blocks.
+    </p>
+    <p>
+        It costs money to run computers, so now you are probably wondering why people are willing to compete to add new blocks
+        Whenever someone wins the competition, they earn some Bitcoin.
+        So all these miners are mining as fast as possible so they can earn a Bitcoin reward as compensation for their mining.
+    </p>
+    <p>
+        Now you might be wondering what it looks like for a miner to win.
+        The miner who wins is the one who finds a nonce that satisfies certain conditions.
+        Miners are trying to find a nonce that results in a hash that starts with a certain number of zeros.
+        The number of zeros is called the difficulty.
+        The difficulty is adjusted occasionally such that blocks are produced roughly every 10 minutes.
+        If blocks are being produced quicker than 10 minutes, for example, then the difficulty is increased, and the hash is required to start with more zeros.
+    </p>
+    <p>
+        In order to find this nonce, miners use a brute force approach.
+        They try a random nonce, verify whether the hash starts with the correct number of zeros, and if not, they try another random nonce.
+    </p>
+    <h2>Why is the blockchain immutable?</h2>
+    <p>
+        The blockchain is structured such that the hash of the previous block is passed into the hash function for the current block.
+        So let's say I try to modify a block from 10 blocks ago, and I claim that is the correct chain.
+        Others can easily recompute the hashes and see that I am lying.
+    </p>
+    <p>
+        Now let's say I am a little more savvy.
+        To convince others that my version is the correct chain, I will find valid nonces for all 10 blocks.
+        Through this process, it is theoretically possible to modify the chain.
+        But for practical purposes, it is expensive to modify the chain, and after enough blocks have passed it is practically impossible.
+    </p>
+    <p>
+        Once a new block is added to the chain, it is in the miners best interest to try to add new blocks to the longest known version of the blockchain.
+        If they win and add new blocks, they earn the Bitcoin reward.
+        If a miner tries and fails to modify the chain, they are only hurting themselves by wasting time and money.
+    </p>
+    <h2>Transparency</h2>
+    <p>
+        Up to this point, we have been talking about how the blockchain is secured with cryptography.
+        Now let's talk about how the blockchain is transparent.
+    </p>
+    <p>
+        Everything I've talked about in this post is public information.
+        For example, the original Bitcoin whitepaper can be found <a href="https://bitcoin.org/bitcoin.pdf">here</a>.
+    </p>
+    <p>
+        In addition to that, the source code for the Bitcoin software can be found <a href="https://github.com/bitcoin/bitcoin">here</a>.
+    </p>
+    <p>
+        Bitcoin is open source, which means that anyone can look at it.
+        Anyone can learn, audit, verify, and judge to see if it is secure, and to ensure that people are telling the truth about what Bitcoin does.
+        If you are up for a challenge, you can even look at these resources to verify that the information in this post is accurate.
+    </p>
+</body>
+
+</html>
