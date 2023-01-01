@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="icon" href="images/favicon.png" />
+    <title>Quadratic Voting | Spencer Chubb</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/spencerchubb/spencerchubb.github.io">Repo</a>
+        <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <h1>Quadratic Voting</h1>
+    <p>
+        Quadratic voting is a decision-making method for groups.
+        In this post, I will explain how it works and its pros and cons.
+    </p>
+    <h2>Assumptions</h2>
+    <ul>
+        <li>There are enough issues, and each issue is sufficiently inconsequential such that voters have a quasi-linear "continuation value" for retaining voice credits for future issues</li>
+        <li>Voice credits are distributed fairly</li>
+        <li>In deciding how many votes to purchase, each voter weighs the marginal cost of an additional vote against the perceived chance the vote will be pivotal in swinging the election</li>
+        <li>Voters agree on the marginal pivotality <i>p</i></li>
+    </ul>
+    <h2>How It Works</h2>
+    <p>
+        Let's say voters are voting on an issue, and they're deciding between X and Y.
+        Each voter has a certain number of "voice credits".
+    </p>
+    <p>
+        Each voter chooses some number of votes v<sub>i</sub>.
+        A positive number means they want X, and a negative number means they want Y.
+        A larger number, in terms of absolute value, indicates a stronger preference.
+    </p>
+    <p>
+        If the sum of all v<sub>i</sub> is positive, X wins.
+        Otherwise, Y wins.
+    </p>
+    <p>
+        Each voter pays a cost according the following formula:
+    </p>
+    <p>
+        voice credits = c(v<sub>i</sub>)
+    </p>
+    <p>
+        c is a function that takes in a number of votes and returns the number of voice credits.
+        Also, c must be differentiable, convex, even, and strictly increasing in |v<sub>i</sub>|.
+    </p>
+    <p>
+        Remember we have assumed that voters agree on the marginal pivotality <i>p</i>.
+        Therefore, a rational voter will choose v<sub>i</sub> to maximize 2pv<sub>i</sub>u<sub>i</sub> - c(v<sub>i</sub>).
+        Given the assumptions that voice credits are distributed fairly, society wishes to implement A when the sum of all u<sub>i</sub> >= 0.
+        We say a vote pricing rule is robustly optimal if each voter <i>i</i> so that the sum of all v<sub>i</sub> has the same sign as the sum of all u<sub>i</sub>.
+    </p>
+    <h2>The Vote Pricing Rule</h2>
+    <p>
+        We have had all this talk about a theoretical vote pricing rule.
+        We have also defined what it would look like for a vote pricing rule to be optimal.
+        So what is the optimal vote pricing rule?
+    </p>
+    <p>
+        It is actually very simple.
+    </p>
+    <p>
+        voice credits = (number of votes)<sup>2</sup>
+    </p>
+    <h3>Vote pricing examples</h3>
+    <table>
+        <thead>
+            <th>Votes</th>
+            <th>Voice credits</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>16</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Proving Optimality</h2>
+    <p>
+        We have claimed that (number of votes)<sup>2</sup> is the optimal vote pricing rule.
+        How do we prove that?
+    </p>
+    <p>
+        The central idea is that quadratic functions are the only ones with linear derivatives.
+        Therefore, a voter buying votes equates her marginal benefit and cost at a number of votes proportional to her value.
+    </p>
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2003531">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2003531</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Quadratic_voting">https://en.wikipedia.org/wiki/Quadratic_voting</a></li>
+    </ul>
+</body>
+
+</html>
