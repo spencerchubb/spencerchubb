@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="icon" href="images/favicon.png" />
+    <title>The Economy is a Neural Network</title>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/spencerchubb/spencerchubb.github.io">Repo</a>
+        <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+    <h1>The Economy is a Neural Network</h1>
+    <p>
+        In this post, I make the case that there are many parallels between the economy and neural networks.
+        It will help to have a basic understanding of neural networks.
+        You can learn the basics <a href="./neural_net.html">here</a>.
+    </p>
+    <h2>1. Error</h2>
+    <p>
+        One of the most important aspects of a neural network is error.
+        While training a neural network, the goal is to minimize error.
+        For example, if the task is to identify whether an image is a cat or a dog, we want the neural network to make as few errors as possible.
+    </p>
+    <p>
+        In some sense, the economy also has a notion of error.
+        Where there is a shortage or a surplus in the economy, that is an opportunity for a savvy entrepreneur to make a profit.
+        That is kind of like error in a neural network.
+    </p>
+    <p>
+        Consider masks as an example.
+        Prior to the pandemic demand for masks was at <i>x</i>.
+        Once the pandemic started, demand for masks was greater than <i>x</i>.
+        There weren't enough masks to fulfill the demand, so the price increases.
+        This price increase incentivized more companies to produce more masks, or in other words, reduce the error in the economy.
+    </p>
+    <h2>2. Layers</h2>
+    <p>
+        Neural networks typically have layers.
+        The first layer accepts the input, the middle layers do some "magic" stuff, and then the output layer gives something that is meaningful to us.
+        The economy operates in a similar manner.
+    </p>
+    <p>
+        When producing goods or services, the customer only cares about the end result.
+        The customer doesn't know much about what happens in the supply chain, nor would they ever be able to learn all the details even if they tried.
+    </p>
+    <p>
+        The house I am sitting in right now is a final output of the economy.
+        The house is built by construction workers, and it's built out of wood and other materials.
+        Also, someone else had to make the tools used by the construction workers.
+        And someone else had to source the raw inputs that went into those tools and house materials.
+        I think you understand the point I'm trying to make.
+        There are layers in the supply chain much like how there are layers in a neural network.
+    </p>
+    <p>
+        The final layer of a neural network gives something useful, but there is a layer before that.
+        And there is a layer before that. 
+        And a layer before that. 
+        And so on, all the way until we get to the input layer.
+    </p>
+    <p>
+        Sometimes, there will even be circular loops in the economy and neural networks.
+        In the field of AI, this is called a recurrent architecture.
+    </p>
+    <h2>3. Activation</h2>
+    <p>
+        In a neural network, activation functions allow the network to learn a non-linear function.
+        What exactly do I mean by that?
+    </p>
+    <p>
+        If you could only learn linear functions, you would not be able to do much.
+        Linear functions only have one variable.
+        If you want to do anything useful, you have to be able to learn functions of any kind.
+        That means you have to introduce some form of non-linearity between the layers of a neural network.
+    </p>
+    <p>
+        A very common activation function in AI is called ReLU (rectified linear activation unit).
+        The function is simple.
+        If input is <= 0, return 0.
+        If input is > 0, return the input.
+    </p>
+    <p>
+        The economy also uses ReLU!
+        If you don't want to buy something, you pay 0.
+        If you do want to buy something, you buy whatever quantity you want and are willing to pay for.
+    </p>
+    <p>
+        This ReLU idea applies at every layer of the supply chain.
+        Let's go back to the house example.
+        First, people source the raw inputs for tools and house materials.
+        Then, a construction company decides if they want to purchase those raw inputs, thereby activating the previous layer in the supply chain.
+        Then, a home buyer decides if they want to purchase the house, thereby activating the previous layer in the supply chain.
+    </p>
+    <h2>Conclusion</h2>
+    <p>
+        I hope you found this analogy interesting.
+        I find it very fascinating that the economy is analogous to neural networks since they both have the notion of error, layers, and activation.
+        Perhaps there are other parallels, but these are the three that stood out to me most.
+    </p>
+</body>
+
+</html>
