@@ -33,6 +33,7 @@ p, a, li, th, td {
 table {
     font-family: 'Roboto', sans-serif;
     text-align: left;
+    border-collapse: collapse;
 }
 
 th, td {
