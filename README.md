@@ -1,5 +1,5 @@
-# spencerchubb
+# Spencer Chubb
 
-- Resume: https://spencerchubb.com/resume.html
-- Twitter: https://twitter.com/spencer_chubb
-- I am working on https://cubingapp.com
+- [LinkedIn](https://www.linkedin.com/in/spencerchubb)
+- [Website](https://spencerchubb.com)
+- I maintain [cubingapp.com](https://cubingapp.com) on the side
